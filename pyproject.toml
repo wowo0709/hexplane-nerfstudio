@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+authors = [
+    {name = "Ang Cao", email = "ancao@umich.edu"},
+    {name = "Justin Johnson"}
+]
+name = "hexplane-nerfstudio"
+description = "HexPlane model implementation based on nerfstudio"
+readme = "README.md"
+license = {text = "BSD 3-Clause"}
+dependencies=[
+    "nerfstudio>=0.2.0"
+]
+dynamic = ["version"]
+
+[project.entry-points."nerfstudio.method_configs"]
+hexplane = "hexplane.hexplane_configs:hexplane_method"
+
+[tool.setuptools]
+include-package-data = true
+packages = [
+    "hexplane"
+]
+
+[tool.setuptools.dynamic]
+version = { attr = "hexplane.__version__" }
