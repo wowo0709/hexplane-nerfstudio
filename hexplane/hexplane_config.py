@@ -4,6 +4,7 @@ from nerfstudio.data.dataparsers.dnerf_dataparser import DNeRFDataParserConfig
 from nerfstudio.engine.optimizers import AdamOptimizerConfig
 from nerfstudio.engine.schedulers import ExponentialDecaySchedulerConfig
 from nerfstudio.engine.trainer import TrainerConfig
+from nerfstudio.pipelines.base_pipeline import VanillaPipelineConfig
 from nerfstudio.plugins.types import MethodSpecification
 
 from hexplane.hexplane import HexPlaneModelConfig
@@ -35,5 +36,6 @@ hexplane_method = MethodSpecification(
         },
         viewer=ViewerConfig(num_rays_per_chunk=1 << 12),
         vis="viewer"
-    )
+    ), 
+    description="HexPlane: A Fast Representation for Dynamic Scenes"
 )

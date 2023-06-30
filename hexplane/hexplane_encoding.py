@@ -3,6 +3,8 @@ import torch.nn.functional as F
 from torch import nn
 from torchtyping import TensorType
 
+from nerfstudio.field_components.encodings import Encoding
+
 
 class HexplaneEncoding(Encoding):
     """Learned vector-matrix encoding proposed by HexPlane
