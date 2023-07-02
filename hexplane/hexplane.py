@@ -54,7 +54,7 @@ class HexPlaneModelConfig(ModelConfig):
 
     _target: Type = field(default_factory=lambda: HexPlaneModel)
     model_name: str = "HexPlane"
-    N_voxel_init: int = 64 * 64 * 64
+    N_voxel_init: int = 32 * 32 * 32
     """Initial voxel number"""
     N_voxel_final: int = 200 * 200 * 200
     """Final voxel number"""
@@ -67,7 +67,7 @@ class HexPlaneModelConfig(ModelConfig):
     """Final grid size of time axis"""
     upsample_list: List[int] = field(default_factory=lambda: [3000, 6000, 9000])
     """Upsampling grid resolution step"""
-    update_emptymask_list: List[int] = field(default_factory=lambda: [4000, 8000, 10000])
+    update_emptymask_list: List[int] = field(default_factory=lambda: [4000, 10000])
     """Updating empty grid step"""
     loss_coefficients: Dict[str, float] = to_immutable_dict({"rgb_loss": 1.0,})
     """Loss specific weights"""
@@ -111,7 +111,7 @@ class HexPlaneModelConfig(ModelConfig):
     """
     n_samples: int = 1000
     """
-    Default number of samples per ray
+    Maximum number of samples per ray
     self.n_samples = min(self.config.n_samples, int(np.linalg.norm(self.reso_cur) / self.config.step_ratio))
     """
     use_emptymask: bool = True

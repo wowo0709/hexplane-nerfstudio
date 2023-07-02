@@ -12,7 +12,7 @@ from hexplane.hexplane import HexPlaneModelConfig
 hexplane_method = MethodSpecification(
     config = TrainerConfig(
         method_name="hexplane", 
-        steps_per_eval_batch=500, # eval loss 
+        steps_per_eval_batch=25000, # eval loss 
         steps_per_eval_image=500, # eval image
         steps_per_eval_all_images= 24999, # eval all images
         steps_per_save=2000, 
@@ -20,7 +20,9 @@ hexplane_method = MethodSpecification(
         mixed_precision=False, 
         pipeline=VanillaPipelineConfig(
             datamanager=VanillaDataManagerConfig(
-                dataparser=DNeRFDataParserConfig()
+                dataparser=DNeRFDataParserConfig(),
+                train_num_rays_per_batch=2048, 
+                eval_num_rays_per_batch=2048, 
             ),
             model=HexPlaneModelConfig(eval_num_rays_per_chunk=1 << 12),
         ),

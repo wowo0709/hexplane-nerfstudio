@@ -23,7 +23,7 @@ Navigate to this folder and run below command.
 python -m pip install -e .
 ```
 
-**3. Run `ns-install-cli** 
+**3. Run `ns-install-cli`** 
 
 This needs to be rerun when the CLI changes, for example if nerfstudio is updated. 
 
