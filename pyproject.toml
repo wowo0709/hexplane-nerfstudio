@@ -12,7 +12,8 @@ description = "HexPlane model implementation based on nerfstudio"
 readme = "README.md"
 license = {text = "BSD 3-Clause"}
 dependencies=[
-    "nerfstudio>=0.3.0"
+    "nerfstudio>=0.3.0", 
+    "torchtyping"
 ]
 dynamic = ["version"]
 
