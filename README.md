@@ -7,7 +7,7 @@ HexPlane model implementation based on nerfstudio
 
 **0. Install nerfstudio dependencies and nerfstudio**
 
-Refer to the [nerfstudio installation document]() to install nerfstudio dependencies and nerfstudio.
+Refer to the [nerfstudio installation document](https://docs.nerf.studio/en/latest/quickstart/installation.html) to install nerfstudio dependencies and nerfstudio.
 
 **1. Clone this repo**
 
