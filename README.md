@@ -91,6 +91,7 @@ ns-train hexplane --data <data_folder>
 
 Expected future updates to this repository: 
 
+ - [ ] Change beta value of Adam optimizer according to the paper
  - [ ] Implement TV regularization
  - [ ] Include other dataset (such as Plenoptic video dataset which was used in the paper)
  - [ ] Support depth loss

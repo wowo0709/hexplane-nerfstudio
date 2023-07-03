@@ -114,9 +114,9 @@ class HexPlaneModelConfig(ModelConfig):
     Maximum number of samples per ray
     self.n_samples = min(self.config.n_samples, int(np.linalg.norm(self.reso_cur) / self.config.step_ratio))
     """
-    use_emptymask: bool = True
+    use_emptymask: bool = False
     """Whether to use empty mask or not"""
-    sampling: str = "uniform" # choose from "uniform", "pdf"
+    sampling: str = "pdf" # choose from "uniform", "pdf"
     """Ray sampling method"""
 
 
@@ -320,7 +320,7 @@ class HexPlaneModel(Model):
 
         # Ray samplers
         self.sampler_uniform = UniformSampler(num_samples=self.n_samples)
-        self.sampler_pdf = PDFSampler(num_samples=self.n_samples)
+        self.sampler_pdf = PDFSampler(num_samples=self.n_samples, include_original=False)
 
         # Colliders
         if self.config.enable_collider:
@@ -377,8 +377,12 @@ class HexPlaneModel(Model):
             acc_mask = torch.where(coarse_accumulation < self.config.raymarch_weight_thres, False, True).reshape(-1)
             rgb = self.field.get_outputs(ray_samples_uniform, mask=acc_mask, bg_color=colors.WHITE.to(self.device))
         elif self.config.sampling == "pdf":
-            # TODO: PDF sampling
             ray_samples_pdf = self.sampler_pdf(ray_bundle, ray_samples_uniform, weights)
+            if self.empty_mask:
+                positions = SceneBox.get_normalized_positions(ray_samples_pdf.frustums.get_positions(), self.field.aabb)
+                positions = positions * 2 - 1
+                emptiness = self.empty_mask.sample_empty(positions).reshape(*ray_samples_pdf.shape)
+                empty_mask = (emptiness > 0).to(self.device)  # emptiness = 1: Exist, = 0: Non-exist
             density = self.field.get_density(ray_samples_pdf, mask=empty_mask)
             weights = ray_samples_pdf.get_weights(density)
             coarse_accumulation = self.renderer_accumulation(weights)

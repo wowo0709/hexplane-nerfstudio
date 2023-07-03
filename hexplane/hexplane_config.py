@@ -21,8 +21,8 @@ hexplane_method = MethodSpecification(
         pipeline=VanillaPipelineConfig(
             datamanager=VanillaDataManagerConfig(
                 dataparser=DNeRFDataParserConfig(),
-                train_num_rays_per_batch=2048, 
-                eval_num_rays_per_batch=2048, 
+                train_num_rays_per_batch=1024, 
+                eval_num_rays_per_batch=1024, 
             ),
             model=HexPlaneModelConfig(eval_num_rays_per_chunk=1 << 12),
         ),
