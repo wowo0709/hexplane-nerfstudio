@@ -1,6 +1,10 @@
 # HexPlane nerfstudio integration
 HexPlane model implementation based on nerfstudio
 
+> As it is not completed yet and requires few (but important) additional implementations, it'll be welcomed if you want to contribute to this repository. (Please refer to **"Roadmap"** section at bottom of the README)
+>
+> Please feel free to send an e-mail to me or leave a comment/issue here. 
+
 ## Description
 
 ## Installation
@@ -95,3 +99,8 @@ Expected future updates to this repository:
  - [ ] Implement TV regularization
  - [ ] Include other dataset (such as Plenoptic video dataset which was used in the paper)
  - [ ] Support depth loss
+
+## References
+
+- [Nerfstudio repository](https://github.com/nerfstudio-project/nerfstudio)
+- [HexPlane repository (official)](https://github.com/Caoang327/HexPlane)
